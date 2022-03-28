@@ -19,8 +19,8 @@ function loadEvent() {
         console.dir('e');
 
         const formData = new FormData();
-        formData.append('title', e.target.querySelector(input[name='title']).value);
-        formData.append('picture', e.target.querySelector(input[name='picture']).files[0]);
+        formData.append("title", e.target.querySelector(input[name="title"]).value);
+        formData.append("picture", e.target.querySelector(input[name="picture"]).files[0]);
 
         const fetchSettings = {
             method: "POST",
@@ -28,17 +28,19 @@ function loadEvent() {
         }
 
         fetch('/', fetchSettings)
-            .then(data => {
+            .then(async data => {
                 if (data.status === 200){
-                    e.target.outerHTML = "done";
+                    const res = await data.json()
+                    e.target.outerHTML = `<img src="${res.imageName}">`;
                     console.dir(data);
                 }
             })
             .catch(error => {
-                e.target.outerHTML= 'error'
+                e.target.outerHTML= '${error}'
                 console.dir(error);
             })
     });
+
 
 }
 window.addEventListener("load", loadEvent)

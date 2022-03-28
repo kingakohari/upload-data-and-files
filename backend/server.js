@@ -1,5 +1,5 @@
 
-const express = require("express");
+const express = require("express-fileupload");
 const path = require("path");
 const app = express(); // express is egy függvény és ez lefut, és objektum jön vissza
 
